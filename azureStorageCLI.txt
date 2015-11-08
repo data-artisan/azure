@@ -1,0 +1,32 @@
+azure login
+
+azure --version
+
+azure config mode arm
+
+azure location list
+
+//Create a new ResourceGroup
+azure group create -n "<nameRG>" -l "West US"
+
+//Create a storage account
+azure storage account create <nameblob>
+
+azure storage account connectionstring show <nameblob>
+
+//http://dev.statzup.com/deploying-an-ember-js-cli-app-to-microsoft-azure-cdn/
+//Need " " around the connect string because Azure Storage Connection String (unfortunately) contains semicolons, which are signaling an end of command in Bash and in Linux shells in general. So to make it work you should make sure to double quote it when you export the variable.
+export AZURE_STORAGE_CONNECTION_STRING="DefaultEndpointsProtocol=https;AccountName=<nameblob>;AccountKey=<EnterAcctKey>"
+
+// If need to look at errors in finder
+defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder
+defaults write com.apple.finder AppleShowAllFiles -boolean false ; killall Finder
+
+//Create a storage container
+azure storage container create <containerName>
+
+//Upload blob
+azure storage blob upload '/Users/<home>/data/bikebuyers.csv' data bikebuyers.csv
+
+//Download blob
+azure storage blob download data bikers.csv '/Users/<home>/data/bikers.csv'
